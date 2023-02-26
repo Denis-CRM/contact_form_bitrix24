@@ -37,6 +37,11 @@ curl_setopt_array($curl, array(
    CURLOPT_POSTFIELDS => $queryData,
 ));
 $result = curl_exec($curl);
+
+$file = fopen(__DIR__ . '/history.log', 'a');
+fputs($file, "$result" . PHP_EOL);
+fclose($file);
+
 var_dump ($result);
 curl_close($curl);
 
